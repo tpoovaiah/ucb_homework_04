@@ -1,0 +1,22 @@
+#highScore {
+    color: blueviolet;
+    margin-left: 20px;
+}
+
+#timer {
+    float: right;
+    margin-right: 20px;
+}
+
+h1 {
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+
+#start {
+    text-align: center;
+}
+
+.btnSpace {
+    margin-bottom: 20px;
+}

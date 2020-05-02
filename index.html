@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Coding Quiz</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <body>
+        <span id="highScore">High Score</span>
+        <span id="timer"></span>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+
+                <div id="start" >
+                    <h1>Quizzy</h1>
+                    <p>EXPLAIN IT TO ME!</p>
+                    <button type="button" class="btn btn-primary btnSpace" id="startBtn" onclick="startQuiz()">Start Quiz!</button>
+                </div>
+                
+                
+                <div id="quiz" style="display:none;">
+                    <h1 id="question"></h1>
+                    <div id="choices">
+                        <button type="button" class="btn btn-primary btnSpace choice" id="A" onclick="checkAnswer('A')">A</button>
+                        <br/>
+                        <button type="button" class="btn btn-primary btnSpace choice" id="B" onclick="checkAnswer('B')">B</button>
+                        <br/>
+                        <button type="button" class="btn btn-primary btnSpace choice" id="C" onclick="checkAnswer('C')">C</button>
+                        <br/>
+                        <button type="button" class="btn btn-primary btnSpace choice" id="D" onclick="checkAnswer('D')">D</button> 
+                    </div>
+                    <div id="resultBar">
+                        <div id="correctBar" style="display: none;">
+                            <hr>
+                            <p style="color: rgb(163, 163, 163);">Correct!</p>
+                        </div>
+                        <div id="wrongBar" style="display: none;">
+                            <hr>
+                            <p style="color: rgb(163, 163, 163);">Incorrect</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div id="recordScore" style="display:none;">
+                    <h1>All done!</h1>
+                    <h3>Your final score is:</h3>
+                    <form class="form-inline" style="margin-top: 30px;">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <h4 style="margin-right: 15px;">Enter Initials:</h4>
+                          <label for="inputPassword2" class="sr-only">Password</label>
+                          <input type="text" class="form-control" id="inputPassword2" placeholder="ex. AE">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" onclick="logScore()">Submit</button>
+                    </form>
+                </div>
+
+
+                <div id="displayScore" style="display:none;">
+                    <h1>High Scores</h1>
+                    <ul id="scoreList"></ul>
+                    <button type="submit" class="btn btn-primary mr-2" onclick="restartQuiz()">Try Again</button>
+                    <button type="submit" class="btn btn-primary" onclick="clearScore()">Clear High Scores</button>
+                </div>
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    
+    <script src="script.js">
+    </script>
+    </body>
+    </html>
+    
