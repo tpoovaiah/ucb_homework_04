@@ -148,6 +148,7 @@ function logScore() {
   recScore.style.display="none";
   displayScore.style.display="block";
   start.style.display="none"
+  quiz.style.display="none"
   var scoreText = scoreInput.value.trim();
   if (scoreText === "") {
     return;
