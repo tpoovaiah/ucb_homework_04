@@ -19,7 +19,7 @@ var choiceD = document.getElementById("D")
 
 var timeLeft = 75;
 
-//var finalScore = 
+var timerInterval = -1
 
 var questions = [
     {
@@ -117,13 +117,14 @@ function checkAnswer(answer) {
   }
   else {
     showScore();
-    //log the timer HERE!!! find the SCORE!
   }
 
 }
 
+//Timer
+
 function setTimer() {
-  var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
     if(timeLeft <=0){
       clearInterval(timerInterval);
       timerEl.innerHTML = "Timer: 0";
@@ -138,6 +139,8 @@ function setTimer() {
 
 
 function showScore() {
+  clearInterval(timerInterval);
+  timerInterval = -1;
   quiz.style.display="none";
   recScore.style.display="block";
   //var score = timeLeft
@@ -225,9 +228,7 @@ function restartQuiz() {
 
 
 
-highScoreEl.addEventListener("click", function(event) {
 
-}
 
 
 
