@@ -9,7 +9,7 @@ var noBar = document.getElementById("wrongBar")
 var start = document.getElementById("start")
 var quiz = document.getElementById("quiz")
 var recScore = document.getElementById("recordScore")
-var dispScore = document.getElementById("displayScore")
+var displayScore = document.getElementById("displayScore")
 var question = document.getElementById("question")
 
 var choiceA = document.getElementById("A")
@@ -19,6 +19,7 @@ var choiceD = document.getElementById("D")
 
 var timeLeft = 75;
 
+//var finalScore = 
 
 var questions = [
     {
@@ -75,6 +76,8 @@ var questions = [
   var currentQI = 0
 
 
+  //running the quiz
+
 
 function showQuestion() {
   var q = questions[currentQI];
@@ -92,10 +95,7 @@ function startQuiz() {
   quiz.style.display="block";
   showQuestion();
   setTimer();
-
 }
-
-
 
 function checkAnswer(answer) {
   if (answer === questions[currentQI].correct){
@@ -111,48 +111,180 @@ function checkAnswer(answer) {
     }, 1000);
     timeLeft -=10
   }
-
   if(currentQI < lastQI) {
     currentQI++;
     showQuestion();
   }
-
   else {
     showScore();
-    quiz.style.display="none"
-    //somehow go to record score page
   }
 
 }
 
-
-
-
-
-
 function setTimer() {
   var timerInterval = setInterval(function() {
-    timeLeft--;
-    timerEl.textContent = "Timer: " + timeLeft;
-
-    // if (answerWrong()) {
-    //   timeLeft-=10
-    // }
-
-    if(timeLeft === 0) {
+    if(timeLeft <=0){
       clearInterval(timerInterval);
-      endQuiz();
+      timerEl.innerHTML = "Timer: 0";
+      showScore();
     }
-
+    else {
+      timerEl.innerHTML = "Timer: " + timeLeft
+    }
+    timeLeft-= 1;
   }, 1000);
 }
 
+
 function showScore() {
+  quiz.style.display="none";
   recScore.style.display="block";
-  var score = timeLeft
+  //var score = timeLeft
 }
 
-function saveScore() {
-  recScore.style.display="none"
-  dispScore.style.display="block"
+function logScore() {
+  recScore.style.display="none";
+  displayScore.style.display="block";
 }
+
+
+
+
+
+//loggin high scores
+
+
+var scoreInput = document.querySelector("#score-text");
+var scoreForm = document.querySelector("#score-form");
+var scoreList = document.querySelector("#score-list");
+var scoreCountSpan = document.querySelector("#score-count");
+
+var scores = [];
+
+init();
+
+function renderscores() {
+  scoreList.innerHTML = "";
+  scoreCountSpan.textContent = scores.length;
+
+  for (var i = 0; i < scores.length; i++) {
+    var score = scores[i];
+
+    var li = document.createElement("li");
+    li.textContent = score;
+    li.setAttribute("data-index", i);
+
+    var button = document.createElement("button");
+    button.textContent = "Complete";
+
+    li.appendChild(button);
+    scoreList.appendChild(li);
+  }
+}
+
+function init() {
+  var storedscores = JSON.parse(localStorage.getItem("scores"));
+
+  if (storedscores !== null) {
+    scores = storedscores;
+  }
+
+  renderscores();
+}
+
+function storescores() {
+  localStorage.setItem("scores", JSON.stringify(scores));
+}
+
+scoreForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var scoreText = scoreInput.value.trim();
+
+  if (scoreText === "") {
+    return;
+  }
+
+  scores.push(scoreText);
+  scoreInput.value = "";
+
+  storescores();
+  renderscores();
+});
+
+scoreList.addEventListener("click", function(event) {
+  var element = event.target;
+
+  if (element.matches("button") === true) {
+    var index = element.parentElement.getAttribute("data-index");
+    scores.splice(index, 1);
+
+    storescores();
+    renderscores();
+  }
+});
+
+
+
+
+
+
+
+
+
+
+//logging high scores
+
+// function renderScores() {
+//   scoreList.innerHTML = "";
+//   for (var i = 0; i < scores.length; i++) {
+//     var score = scores[i];
+//     var li = document.createElement("li");
+//     li.textContent = score;
+//     li.setAttribute("data-index", i);
+
+//     var button = document.createElement("button");
+//     button.textContent = "Remove";
+
+//     li.appendChild(button);
+//     scoreList.appendChild(li);
+//   }
+// }
+
+// function init() {
+//   var storedScores = JSON.parse(localStorage.getItem("scores"));
+//   if (storedScores !== null) {
+//     scores = storedScores;
+//   }
+//   renderScores();
+// }
+
+// function storeScores() {
+//   localStorage.setItem("scores", JSON.stringify(scores));
+// }
+
+
+// function onClick() {
+//   var scoreText = scoreInput.value.trim();
+//   if (scoreText === "") {
+//     return;
+//   }
+//   scores.push(scoreText);
+//   scoreInput.value = "";
+//   storeScores();
+//   renderScores();
+//   init();
+// }
+
+
+// submit.addEventListener("click", function(event) {
+//   event.preventDefault();
+//   var scoreText = scoreInput.value.trim();
+//   if (scoreText === "") {
+//     return;
+//   }
+//   scores.push(scoreText);
+//   scoreInput.value = "";
+//   storeScores();
+//   renderScores();
+// });

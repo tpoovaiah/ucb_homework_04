@@ -49,22 +49,32 @@
                 <div id="recordScore" style="display:none;">
                     <h1>All done!</h1>
                     <h3>Your final score is:</h3>
-                    <form class="form-inline" style="margin-top: 30px;">
-                        <div class="form-group mx-sm-3 mb-2">
+                    <!-- <form class="form-inline" style="margin-top: 30px;" id="scoreForm"> -->
+                        
+                        <div class="scores">
+                            <form id="score-form" method="POST">
+                              <label for="score-text"><h3>Enter Initials:</h3></label>
+                              <input type="text" placeholder="ex. AE" name="score-text" id="score-text" />
+                              <button type="button" class="btn btn-primary mb-2" onclick="logScore()">Submit</button>
+                            </form>
+                            <span id="score-count">0</span>
+                            
+                          </div>
+                        
+                        <!-- <div class="form-group mx-sm-3 mb-2">
                             <h4 style="margin-right: 15px;">Enter Initials:</h4>
-                          <label for="inputPassword2" class="sr-only">Password</label>
-                          <input type="text" class="form-control" id="inputPassword2" placeholder="ex. AE">
+                          <input type="text" class="form-control" id="username" placeholder="ex. AE">
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2" onclick="logScore()">Submit</button>
+                        <button type="button" class="btn btn-primary mb-2" onclick="logScore()">Submit</button> -->
                     </form>
                 </div>
 
 
                 <div id="displayScore" style="display:none;">
                     <h1>High Scores</h1>
-                    <ul id="scoreList"></ul>
+                    <ul id="score-list"></ul>
                     <button type="submit" class="btn btn-primary mr-2" onclick="restartQuiz()">Try Again</button>
-                    <button type="submit" class="btn btn-primary" onclick="clearScore()">Clear High Scores</button>
+                    <button type="submit" class="btn btn-primary" onclick="onClick()">Clear High Scores</button>
                 </div>
 
             </div>

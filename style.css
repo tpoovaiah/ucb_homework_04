@@ -20,3 +20,36 @@ h1 {
 .btnSpace {
     margin-bottom: 20px;
 }
+
+
+input {
+    height: 50px;
+    width: 50%;
+    padding: 6px;
+    margin-top: 10px;
+    font-size: 2.4em;
+    border: solid 1px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: white;
+  }
+  
+  li {
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: lightblue;
+    font-size: 1em;
+    line-height: 1;
+  }
+
+  li button {
+    float: right;
+    border: none;
+    height: 30px;
+    font-size: 1em;
+  }
