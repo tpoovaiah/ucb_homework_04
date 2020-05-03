@@ -117,6 +117,7 @@ function checkAnswer(answer) {
   }
   else {
     showScore();
+    //log the timer HERE!!! find the SCORE!
   }
 
 }
@@ -145,59 +146,7 @@ function showScore() {
 function logScore() {
   recScore.style.display="none";
   displayScore.style.display="block";
-}
 
-
-
-
-
-//loggin high scores
-
-
-var scoreInput = document.querySelector("#score-text");
-var scoreForm = document.querySelector("#score-form");
-var scoreList = document.querySelector("#score-list");
-var scoreCountSpan = document.querySelector("#score-count");
-
-var scores = [];
-
-init();
-
-function renderscores() {
-  scoreList.innerHTML = "";
-  scoreCountSpan.textContent = scores.length;
-
-  for (var i = 0; i < scores.length; i++) {
-    var score = scores[i];
-
-    var li = document.createElement("li");
-    li.textContent = score;
-    li.setAttribute("data-index", i);
-
-    var button = document.createElement("button");
-    button.textContent = "Complete";
-
-    li.appendChild(button);
-    scoreList.appendChild(li);
-  }
-}
-
-function init() {
-  var storedscores = JSON.parse(localStorage.getItem("scores"));
-
-  if (storedscores !== null) {
-    scores = storedscores;
-  }
-
-  renderscores();
-}
-
-function storescores() {
-  localStorage.setItem("scores", JSON.stringify(scores));
-}
-
-scoreForm.addEventListener("submit", function(event) {
-  event.preventDefault();
 
   var scoreText = scoreInput.value.trim();
 
@@ -210,19 +159,75 @@ scoreForm.addEventListener("submit", function(event) {
 
   storescores();
   renderscores();
-});
+}
 
-scoreList.addEventListener("click", function(event) {
-  var element = event.target;
 
-  if (element.matches("button") === true) {
-    var index = element.parentElement.getAttribute("data-index");
-    scores.splice(index, 1);
 
-    storescores();
-    renderscores();
+
+
+//loggin high scores
+
+
+var scoreInput = document.querySelector("#score-text");
+var scoreForm = document.querySelector("#score-form");
+var scoreList = document.querySelector("#score-list");
+
+var scores = [];
+
+init();
+
+function renderscores() {
+  scoreList.innerHTML = "";
+
+  for (var i = 0; i < scores.length; i++) {
+    var score = scores[i];
+    var li = document.createElement("li");
+    li.textContent = score;
+    li.setAttribute("data-index", i);
+    scoreList.appendChild(li);
   }
+}
+
+function init() {
+  var storedscores = JSON.parse(localStorage.getItem("scores"));
+  if (storedscores !== null) {
+    scores = storedscores;
+  }
+  renderscores();
+}
+
+function storescores() {
+  localStorage.setItem("scores", JSON.stringify(scores));
+}
+
+scoreForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+  return
 });
+
+
+
+
+
+
+function clearScores() {
+  localStorage.clear();
+  scores=[]
+  storescores();
+  renderscores();
+}
+
+
+function restartQuiz() {
+  location.reload();
+}
+
+
+
+
+highScoreEl.addEventListener("click", function(event) {
+
+}
 
 
 
