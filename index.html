@@ -9,15 +9,15 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
-        <span id="highScore">High Score</span>
+        <span id="highScore" onclick="logScore()">High Score</span>
         <span id="timer">Timer: 0</span>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
 
                 <div id="start" >
-                    <h1>Quizzy</h1>
-                    <p>EXPLAIN IT TO ME!</p>
+                    <h1>Coding Quiz</h1>
+                    <p>This is a basic coding quiz to help you get some review. When you are ready, click "Start Quiz!"</p>
                     <button type="button" class="btn btn-primary btnSpace" id="startBtn" onclick="startQuiz()">Start Quiz!</button>
                 </div>
                 
@@ -48,7 +48,7 @@
                 
                 <div id="recordScore" style="display:none;">
                     <h1>All done!</h1>
-                    <h3 style="margin-bottom: 50px;">Your final score is:</h3>                      
+                    <h3 style="margin-bottom: 50px;" id="finalScore"></h3>                      
                         <div class="scores">
                             <form id="score-form" method="POST">
                               <label for="score-text"><h4>Enter Initials:</h4></label>

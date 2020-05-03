@@ -18,18 +18,10 @@ var choiceC = document.getElementById("C")
 var choiceD = document.getElementById("D")
 
 var timeLeft = 75;
-
 var timerInterval = -1
+var finalScore = document.getElementById("finalScore")
 
 var questions = [
-    {
-      question: "This is a test question",
-      choiceA:"correct",
-      choiceB:"wrong",
-      choiceC: "wrong",
-      choiceD:"wrong",
-      correct: "A"
-    },
     {
       question: "Commonly used data types DO NOT include:",
       choiceA:"strings",
@@ -125,14 +117,17 @@ function checkAnswer(answer) {
 
 function setTimer() {
     timerInterval = setInterval(function() {
-    if(timeLeft <=0){
-      clearInterval(timerInterval);
-      timerEl.innerHTML = "Timer: 0";
-      showScore();
-    }
-    else {
-      timerEl.innerHTML = "Timer: " + timeLeft
-    }
+      for (i = 0; i<=timeLeft; i++) {
+        if(timeLeft ===0){
+          clearInterval(timerInterval);
+          timerEl.innerHTML = "Timer: 0";
+          showScore();
+        }
+        else {
+          timerEl.innerHTML = "Timer: " + timeLeft
+        }
+      }
+    
     timeLeft-= 1;
   }, 1000);
 }
@@ -141,6 +136,9 @@ function setTimer() {
 function showScore() {
   clearInterval(timerInterval);
   timerInterval = -1;
+  var endScore = timeLeft
+  finalScore.innerHTML= "Your final score is: " + endScore
+  timerEl.innerHTML="Timer: 0"
   quiz.style.display="none";
   recScore.style.display="block";
   //var score = timeLeft
@@ -149,17 +147,13 @@ function showScore() {
 function logScore() {
   recScore.style.display="none";
   displayScore.style.display="block";
-
-
+  start.style.display="none"
   var scoreText = scoreInput.value.trim();
-
   if (scoreText === "") {
     return;
   }
-
-  scores.push(scoreText);
+  scores.push(scoreText + ", " + finalScore.innerHTML);
   scoreInput.value = "";
-
   storescores();
   renderscores();
 }
